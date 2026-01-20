@@ -1,0 +1,45 @@
+[Unit]
+Description=Tdarr Node - Remote Worker
+After=network-online.target
+
+[Container]
+Image=ghcr.io/haveagitgat/tdarr_node:latest
+ContainerName=tdarr-node
+AutoUpdate=registry
+
+# --- Environment Variables ---
+# Update PUID/PGID to match your host user
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=TZ=America/New_York
+# Address of your master Tdarr Server
+Environment=serverURL=http://serverip:8266
+Environment=nodeName=WorkerNode1
+
+# --- Network & Logging ---
+Network=host
+LogDriver=k8s-file
+PodmanArgs=--log-opt=max-size=10m --log-opt=max-file=3
+
+# --- GPU Hardware Passthrough ---
+# Passes through Intel GPU and adds standard Ubuntu video/render groups
+AddDevice=/dev/dri:/dev/dri
+PodmanArgs=--group-add 44 --group-add 110
+
+# --- Volume Mappings ---
+Volume=/home/user/tdarr-node/configs:/app/configs
+Volume=/home/user/tdarr-node/logs:/app/logs
+
+# Transcode Cache (MUST match the path used on the Server)
+Volume=/temp:/temp
+Volume=/temp:/app/unmappedNodeCache
+
+# Media Libraries (MUST match the server's paths exactly)
+Volume=/media/tvshows:/media/tvshows
+Volume=/media/movies:/media/movies
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
