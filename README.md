@@ -35,7 +35,9 @@ Locate the IP or Hostname of your Tdarr Server (e.g., `http://192.168.1.50:8266`
 Move the file to the systemd directory and update your media paths to match your server exactly:
 
 `sudo mkdir -p /etc/containers/systemd`
+
 `sudo mv tdarr-node.container /etc/containers/systemd/`
+
 `sudo nano /etc/containers/systemd/tdarr-node.container` to update the configuration.
 
 **Note on Paths:** For Tdarr nodes to work, the `/temp` and `/media` paths inside the container must be identical on both the server and all nodes.
