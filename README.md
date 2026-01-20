@@ -3,7 +3,7 @@ Tdarr Node Podman Quadlet Deployment
 
 **Disclaimer:** I am not affiliated with, associated, authorized, endorsed by, or in any way officially connected with the Tdarr project.
 
-This guide demonstrates how to deploy a **Tdarr Node** as a System Podman Quadlet on Ubuntu 25.10. This node acts as a remote worker to assist your primary Tdarr Server with transcoding tasks. This needs to be a system quadlet to communicate with the GPU.
+This guide demonstrates how to deploy a **Tdarr Node** as a System Podman Quadlet on Ubuntu 25.10. This node acts as a remote worker to assist your primary Tdarr Server with transcoding tasks. This needs to be a system quadlet to communicate with the GPU. If you aren't using a GPU you can probably run this as rootless/user quadlet. If you are using an NVIDIA GPU you will need to figure out the configuration.
 
 System Information
 ------------------
