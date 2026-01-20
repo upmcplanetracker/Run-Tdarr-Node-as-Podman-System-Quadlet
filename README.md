@@ -46,6 +46,7 @@ Move the file to the systemd directory and update your media paths to match your
 Trigger the Quadlet generator and start the service:
 
 `sudo systemctl daemon-reload`
+
 `sudo systemctl start tdarr-node`
 
 4\. Post-Install Verification
